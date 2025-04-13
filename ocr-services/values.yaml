@@ -5,10 +5,10 @@ model:
     tag: "latest"
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    type: NodePort
     port: 8080
     nodePort: 32000
-    
+
 gateway:
   replicaCount: 1
   image:
@@ -16,6 +16,6 @@ gateway:
     tag: "latest"
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    type: NodePort
     port: 8001
     nodePort: 32001
