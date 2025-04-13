@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ocr-services.fullname" . }}-model
+  labels:
+    app: {{ include "ocr-services.name" . }}
+    component: model
+spec:
+  replicas: {{ .Values.model.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ocr-services.fullname" . }}-model
+  template:
+    metadata:
+      labels:
+        app: {{ include "ocr-services.fullname" . }}-model
+    spec:
+      containers:
+      - name: model
+        image: "{{ .Values.model.image.repository }}:{{ .Values.model.image.tag }}"
+        imagePullPolicy: {{ .Values.model.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.model.service.port }}

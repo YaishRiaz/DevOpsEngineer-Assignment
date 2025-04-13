@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ocr-services.fullname" . }}-model
+spec:
+  type: {{ .Values.model.service.type }}
+  ports:
+  - port: {{ .Values.model.service.port }}
+    targetPort: {{ .Values.model.service.port }}
+  selector:
+    app: {{ include "ocr-services.fullname" . }}-model
