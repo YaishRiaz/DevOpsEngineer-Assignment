@@ -7,7 +7,8 @@ model:
   service:
     type: ClusterIP
     port: 8080
-
+    nodePort: 32000
+    
 gateway:
   replicaCount: 1
   image:
@@ -17,3 +18,4 @@ gateway:
   service:
     type: ClusterIP
     port: 8001
+    nodePort: 32001
