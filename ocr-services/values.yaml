@@ -1,7 +1,7 @@
 model:
   replicaCount: 1
   image:
-    repository: "yourdockerusername/ocr-model-service"
+    repository: "yaishriaz/ocr-model-service"
     tag: "latest"
     pullPolicy: IfNotPresent
   service:
@@ -12,7 +12,7 @@ model:
 gateway:
   replicaCount: 1
   image:
-    repository: "yourdockerusername/ocr-api-gateway"
+    repository: "yaishriaz/ocr-api-gateway"
     tag: "latest"
     pullPolicy: IfNotPresent
   service:
