@@ -16,6 +16,6 @@ gateway:
     tag: "latest"
     pullPolicy: Always
   service:
-    type: NodePort
+    type: LoadBalancer 
     port: 8001
     nodePort: 31447
