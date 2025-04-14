@@ -9,7 +9,6 @@ model:
     port: 8080
     nodePort: 32000
 
-# Added a test comment to trigger sync
 gateway:
   replicaCount: 1
   image:
