@@ -1,0 +1,7 @@
+# Ignore large binaries, documentation, and other artifacts
+minikube-linux-amd64
+*.pdf
+*.docx
+test-image-for-recognition.png
+docker/
+Docs/
