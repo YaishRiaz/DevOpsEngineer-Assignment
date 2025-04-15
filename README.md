@@ -26,8 +26,6 @@ This document covers the rationale behind the Docker base image selection, secur
   - Lock dependency versions using `pyproject.toml` and `poetry.lock` to avoid unexpected package versions.
 - **Future Improvements**:
   - Option to run containers as non-root users for added security.
-- **Non-root user (recommendation):**
-  - For enhanced container security, it is recommended to create a non-root user in the Dockerfile and run the app as that user using the `USER` directive.
 
 ## 3. Build Optimization Techniques
 
@@ -127,14 +125,11 @@ Created a bash script called `build_images.sh`:
 ```bash
 #!/bin/bash
 
-# Replace "yourdockerusername" with your actual Docker Hub username
-DOCKER_USERNAME="yourdockerusername"
-
 echo "Building the model service image..."
-docker build -f Dockerfile-model -t $DOCKER_USERNAME/ocr-model-service:latest .
+docker build -f Dockerfile-model -t yaishriaz/ocr-model-service:latest .
 
 echo "Building the API gateway image..."
-docker build -f Dockerfile-gateway -t $DOCKER_USERNAME/ocr-api-gateway:latest .
+docker build -f Dockerfile-gateway -t yaishriaz/ocr-api-gateway:latest .
 
 echo "Build process complete."
 ```
@@ -149,10 +144,26 @@ Tagged and pushed the images:
 ```
 docker login
 
-docker tag yaishriaz/ocr-model-service:latest yourdockerusername/ocr-model-service:latest
-docker push yourdockerusername/ocr-model-service:latest
+docker tag yaishriaz/ocr-model-service:latest yaishriaz/ocr-model-service:latest
+docker push yaishriaz/ocr-model-service:latest
 
-docker tag yaishriaz/ocr-api-gateway:latest yourdockerusername/ocr-api-gateway:latest
-docker push yourdockerusername/ocr-api-gateway:latest
+docker tag yaishriaz/ocr-api-gateway:latest yaishriaz/ocr-api-gateway:latest
+docker push yaishriaz/ocr-api-gateway:latest
 
 ```
+
+## 7. Infrastructure Setup
+
+To install ArgoCD, Prometheus, and Grafana:
+
+```bash
+cd infra
+./setup.sh
+```
+This script will:
+
+- Add Helm repositories for ArgoCD, Prometheus, and Grafana
+- Create the required Kubernetes namespaces
+- Install/upgrade the Helm charts for:
+  - ArgoCD (`argocd` namespace)
+  - Prometheus + Grafana (`monitoring` namespace)
