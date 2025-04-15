@@ -1,10 +1,13 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
+from prometheus_fastapi_instrumentator import Instrumentator
 import requests
 import base64
 import json
 
 app = FastAPI()
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
 
 KSERVE_URL = "http://ocr-services-ocr-services-model:8080/v2/models/ocr-model/infer"
 
