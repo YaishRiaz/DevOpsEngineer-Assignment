@@ -26,6 +26,8 @@ This document covers the rationale behind the Docker base image selection, secur
   - Lock dependency versions using `pyproject.toml` and `poetry.lock` to avoid unexpected package versions.
 - **Future Improvements**:
   - Option to run containers as non-root users for added security.
+- **Non-root user (recommendation):**
+  - For enhanced container security, it is recommended to create a non-root user in the Dockerfile and run the app as that user using the `USER` directive.
 
 ## 3. Build Optimization Techniques
 
@@ -35,8 +37,15 @@ This document covers the rationale behind the Docker base image selection, secur
   - Reduces overall image size and build time.
 - **Potential Multi-Stage Builds**:
   - For further optimization, separating build and runtime environments (not yet implemented).
+- **Poetry install with --no-root:** Avoids installing the current project as a package when not required, reducing build complexity and time.
 
 ## 4. Dockerfile Details
+Docker Image Tags:
+
+- Model Service: `yaishriaz/ocr-model-service:latest`
+- API Gateway: `yaishriaz/ocr-api-gateway:latest`
+
+Hosted in Docker Hub private repositories.
 
 ### Dockerfile for the KServe Model Service (`Dockerfile-model`)
 
