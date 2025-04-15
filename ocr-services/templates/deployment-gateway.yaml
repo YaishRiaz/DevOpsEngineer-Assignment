@@ -25,3 +25,4 @@ spec:
         imagePullPolicy: {{ .Values.gateway.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.gateway.service.port }}
+
