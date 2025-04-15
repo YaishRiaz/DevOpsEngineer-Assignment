@@ -1,7 +1,7 @@
 # OCR Inference System - DevOps Deployment
 
 ## Architecture Diagram
-![image](docs\ArchitectureDiagram.png)
+![image](docs/ArchitectureDiagram.png)
 
 ## Project Overview
 
